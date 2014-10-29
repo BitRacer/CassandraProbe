@@ -14,6 +14,11 @@ private enum EXIT_CODE {
   INCORRECT_USAGE
 }
     public static void main( String[] args ) throws Exception {
+      System.out.print("Called with args: ");
+      for(String arg : args) {
+        System.out.print(" " + arg);
+      }
+      System.out.println();
       CassandraProbe probe = new CassandraProbe();
       if(args.length == 0) {
         probe.usage(EXIT_CODE.INCORRECT_USAGE);
@@ -28,15 +33,30 @@ private enum EXIT_CODE {
         case INCORRECT_USAGE:
           System.out.println("!!! INCORRECT USAGE !!!");
           System.out.println("java -jar probe.jar [server.name]");
+          System.out.println("java -jar probe.jar [server.name] [port]");
+          System.out.println("java -jar probe.jar [server.name] [port] [user] [password]");
+          System.out.println("java -jar probe.jar [server.name] [user] [password]");
         break;
         default:
           System.out.println("unknown error");
       }
-      throw new Exception("Exception thrown due to : " + exitCode.name());
     }
 
   public void connect(String[] args) {
-    Cluster cluster = Cluster.builder().addContactPoint(args[0]).build();
+    Cluster cluster;
+    if(args.length == 4) {
+      cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.getInteger(args[1])).withCredentials(args[2], args[3]).build();
+    }
+    if(args.length == 3) {
+      cluster = Cluster.builder().addContactPoint(args[0]).withCredentials(args[2], args[3]).build();
+    }
+    if(args.length == 2) {
+      cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.getInteger(args[1])).build();
+    }
+    else {
+      cluster = Cluster.builder().addContactPoint(args[0]).build();
+    }
+
     Metadata metadata = cluster.getMetadata();
     System.out.printf("Connected to cluster: %s\n", metadata.getClusterName());
     for ( Host host : metadata.getAllHosts() ) {
