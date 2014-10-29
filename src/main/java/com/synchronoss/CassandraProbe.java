@@ -3,6 +3,8 @@ package com.synchronoss;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Host;
 import com.datastax.driver.core.Metadata;
+import com.datastax.driver.core.exceptions.NoHostAvailableException;
+import com.datastax.driver.core.exceptions.AuthenticationException;
 
 /**
  * Hello world!
@@ -11,7 +13,9 @@ import com.datastax.driver.core.Metadata;
 public class CassandraProbe {
 
 private enum EXIT_CODE {
-  INCORRECT_USAGE
+  INCORRECT_USAGE,
+  HOST_UNAVAILABLE,
+  BAD_AUTH
 }
     public static void main( String[] args ) throws Exception {
       System.out.print("Called with args: ");
@@ -35,34 +39,55 @@ private enum EXIT_CODE {
           System.out.println("java -jar probe.jar [server.name]");
           System.out.println("java -jar probe.jar [server.name] [port]");
           System.out.println("java -jar probe.jar [server.name] [port] [user] [password]");
+          System.out.println("java -jar probe.jar [server.name] [port] [user] [password] [cluster]");
           System.out.println("java -jar probe.jar [server.name] [user] [password]");
+        break;
+        case HOST_UNAVAILABLE:
+          System.out.println("Unable to reach host");
+        break;
+        case BAD_AUTH:
+          System.out.println("Unable to authenticate");
         break;
         default:
           System.out.println("unknown error");
+        break;
       }
     }
 
-  public void connect(String[] args) {
+  public void connect(String[] args) throws Exception {
     Cluster cluster;
-    if(args.length == 4) {
-      cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.getInteger(args[1])).withCredentials(args[2], args[3]).build();
-    }
-    if(args.length == 3) {
-      cluster = Cluster.builder().addContactPoint(args[0]).withCredentials(args[2], args[3]).build();
-    }
-    if(args.length == 2) {
-      cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.getInteger(args[1])).build();
-    }
-    else {
-      cluster = Cluster.builder().addContactPoint(args[0]).build();
-    }
+    try {
+      if(args.length == 4) {
+        cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.parseInt(args[1])).withCredentials(args[2], args[3]).build();
+      }
+      if(args.length == 3) {
+        cluster = Cluster.builder().addContactPoint(args[0]).withCredentials(args[2], args[3]).build();
+      }
+      if(args.length == 2) {
+        cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.getInteger(args[1])).build();
+      }
+      else {
+        cluster = Cluster.builder().addContactPoint(args[0]).build();
+      }
 
-    Metadata metadata = cluster.getMetadata();
-    System.out.printf("Connected to cluster: %s\n", metadata.getClusterName());
-    for ( Host host : metadata.getAllHosts() ) {
-      System.out.printf("Datacenter: %s; Host: %s; Rack: %s\n", host.getDatacenter(), host.getAddress(), host.getRack());
+      Metadata metadata = cluster.getMetadata();
+      System.out.printf("Connected to cluster: %s\n", metadata.getClusterName());
+      for ( Host host : metadata.getAllHosts() ) {
+        System.out.printf("Datacenter: %s; Host: %s; Rack: %s\n", host.getDatacenter(), host.getAddress(), host.getRack());
+      }
+      if(args.length<5) {
+        cluster.connect();
+      }
+      else {
+        cluster.connect(args[4]);
+      }
     }
-    cluster.close();
+    catch(NoHostAvailableException nEx) {
+      usage(EXIT_CODE.HOST_UNAVAILABLE);
+    }
+    catch (AuthenticationException aEx) {
+      usage(EXIT_CODE.BAD_AUTH);
+    }
   }
 
 
