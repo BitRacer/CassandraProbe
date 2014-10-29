@@ -4,7 +4,6 @@
     <list default="true" id="95811a23-7109-4a5f-b0c3-02f4e6510811" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/synchronoss/CassandraProbe.java" afterPath="$PROJECT_DIR$/src/main/java/com/synchronoss/CassandraProbe.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CassandraProbe.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -12,6 +11,7 @@
     <file path="/fragment.java" changelist="95811a23-7109-4a5f-b0c3-02f4e6510811" time="1414610349010" ignored="false" />
     <file path="/pom.xml" changelist="95811a23-7109-4a5f-b0c3-02f4e6510811" time="1414611636028" ignored="false" />
     <file path="/Dummy.txt" changelist="95811a23-7109-4a5f-b0c3-02f4e6510811" time="1414613637706" ignored="false" />
+    <file path="/CassandraProbeTest.java" changelist="95811a23-7109-4a5f-b0c3-02f4e6510811" time="1414615571579" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,7 @@
       <file leaf-file-name="CassandraProbe.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/synchronoss/CassandraProbe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="29" selection-start="1723" selection-end="1723" vertical-scroll-proportion="0.0">
+            <state line="14" column="3" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,7 +95,7 @@
       <file leaf-file-name="CassandraProbeTest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="26" selection-start="630" selection-end="630" vertical-scroll-proportion="0.49330086">
+            <state line="30" column="27" selection-start="659" selection-end="659" vertical-scroll-proportion="0.5115712">
               <folding />
             </state>
           </provider>
@@ -120,6 +120,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/synchronoss/asdf.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/synchronoss/CassandraProbe.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java" />
       </list>
@@ -513,7 +514,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/synchronoss/CassandraProbe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="29" selection-start="1723" selection-end="1723" vertical-scroll-proportion="0.0">
+        <state line="14" column="3" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -522,7 +523,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="26" selection-start="630" selection-end="630" vertical-scroll-proportion="0.49330086">
+        <state line="30" column="27" selection-start="659" selection-end="659" vertical-scroll-proportion="0.5115712">
           <folding />
         </state>
       </provider>

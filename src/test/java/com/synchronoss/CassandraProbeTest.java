@@ -28,6 +28,7 @@ public class CassandraProbeTest extends TestCase {
      * Rigourous Test :-)
      */
     public void testApp() {
+        //need to add mocks
         assertTrue( true );
     }
 }

@@ -7,8 +7,11 @@ import com.datastax.driver.core.exceptions.NoHostAvailableException;
 import com.datastax.driver.core.exceptions.AuthenticationException;
 
 /**
- * Hello world!
- *
+ * Created with IntelliJ IDEA.
+ * User: aallen
+ * Date: 10/29/14
+ * Time: 4:44 PM
+ * To change this template use File | Settings | File Templates.
  */
 public class CassandraProbe {
 
