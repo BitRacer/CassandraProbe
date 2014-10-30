@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95811a23-7109-4a5f-b0c3-02f4e6510811" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/synchronoss/CassandraProbe.java" afterPath="$PROJECT_DIR$/src/main/java/com/synchronoss/CassandraProbe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java" />
-    </list>
+    <list default="true" id="95811a23-7109-4a5f-b0c3-02f4e6510811" name="Default" comment="" />
     <ignored path="CassandraProbe.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/CassandraProbe.java" changelist="95811a23-7109-4a5f-b0c3-02f4e6510811" time="1414615185664" ignored="false" />
@@ -95,7 +92,7 @@
       <file leaf-file-name="CassandraProbeTest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="27" selection-start="659" selection-end="659" vertical-scroll-proportion="0.5115712">
+            <state line="14" column="32" selection-start="317" selection-end="317" vertical-scroll-proportion="0.21924482">
               <folding />
             </state>
           </provider>
@@ -523,7 +520,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/synchronoss/CassandraProbeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="27" selection-start="659" selection-end="659" vertical-scroll-proportion="0.5115712">
+        <state line="14" column="32" selection-start="317" selection-end="317" vertical-scroll-proportion="0.21924482">
           <folding />
         </state>
       </provider>
