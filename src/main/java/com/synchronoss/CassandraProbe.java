@@ -15,7 +15,7 @@ import com.datastax.driver.core.exceptions.AuthenticationException;
  */
 public class CassandraProbe {
 
-private enum EXIT_CODE {
+protected enum EXIT_CODE {
   INCORRECT_USAGE,
   HOST_UNAVAILABLE,
   BAD_AUTH
@@ -35,7 +35,7 @@ private enum EXIT_CODE {
       }
     }
 
-    private void usage(EXIT_CODE exitCode) throws Exception {
+    protected void usage(EXIT_CODE exitCode) throws Exception {
       switch(exitCode) {
         case INCORRECT_USAGE:
           System.out.println("!!! INCORRECT USAGE !!!");
@@ -57,8 +57,8 @@ private enum EXIT_CODE {
       }
     }
 
-  public void connect(String[] args) throws Exception {
-    Cluster cluster;
+  public Cluster connect(String[] args) throws Exception {
+    Cluster cluster = null;
     try {
       if(args.length == 4) {
         cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.parseInt(args[1])).withCredentials(args[2], args[3]).build();
@@ -91,6 +91,7 @@ private enum EXIT_CODE {
     catch (AuthenticationException aEx) {
       usage(EXIT_CODE.BAD_AUTH);
     }
+    return cluster;
   }
 
 
