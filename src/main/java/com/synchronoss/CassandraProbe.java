@@ -3,6 +3,7 @@ package com.synchronoss;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Host;
 import com.datastax.driver.core.Metadata;
+import com.datastax.driver.core.Session;
 import com.datastax.driver.core.exceptions.NoHostAvailableException;
 import com.datastax.driver.core.exceptions.AuthenticationException;
 
@@ -60,30 +61,30 @@ protected enum EXIT_CODE {
   public Cluster connect(String[] args) throws Exception {
     Cluster cluster = null;
     try {
-      if(args.length == 4) {
+      if(args.length == 5) {
+        cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.parseInt(args[1])).withCredentials(args[2], args[3]).withClusterName(args[4]).build();
+      }
+      else if(args.length == 4) {
         cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.parseInt(args[1])).withCredentials(args[2], args[3]).build();
       }
-      if(args.length == 3) {
-        cluster = Cluster.builder().addContactPoint(args[0]).withCredentials(args[2], args[3]).build();
+      else if(args.length == 3) {
+        cluster = Cluster.builder().addContactPoint(args[0]).withCredentials(args[1], args[2]).build();
       }
-      if(args.length == 2) {
-        cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.getInteger(args[1])).build();
+      else if(args.length == 2) {
+        cluster = Cluster.builder().addContactPoint(args[0]).withPort(Integer.parseInt(args[1])).build();
       }
-      else {
+      else if(args.length == 1){
         cluster = Cluster.builder().addContactPoint(args[0]).build();
       }
 
-      Metadata metadata = cluster.getMetadata();
-      System.out.printf("Connected to cluster: %s\n", metadata.getClusterName());
-      for ( Host host : metadata.getAllHosts() ) {
-        System.out.printf("Datacenter: %s; Host: %s; Rack: %s\n", host.getDatacenter(), host.getAddress(), host.getRack());
+      if(cluster != null ) {
+        Metadata metadata = cluster.getMetadata();
+        System.out.printf("Connected to cluster: %s\n", metadata.getClusterName());
+        for ( Host host : metadata.getAllHosts() ) {
+          System.out.printf("Datacenter: %s; Host: %s; Rack: %s\n", host.getDatacenter(), host.getAddress(), host.getRack());
+        }
       }
-      if(args.length<5) {
-        cluster.connect();
-      }
-      else {
-        cluster.connect(args[4]);
-      }
+
     }
     catch(NoHostAvailableException nEx) {
       usage(EXIT_CODE.HOST_UNAVAILABLE);
