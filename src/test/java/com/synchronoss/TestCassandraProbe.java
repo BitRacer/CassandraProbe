@@ -61,7 +61,6 @@ public class TestCassandraProbe {
     }
     ResultSet result = session.execute("select * from test_table WHERE id='key1'");
     assertThat(result.iterator().next().getString("name"), is("Aristotle"));
-    session.close();
   }
 
 
@@ -78,7 +77,6 @@ public class TestCassandraProbe {
     }
     ResultSet result = session.execute("select * from test_table WHERE id='key1'");
     assertThat(result.iterator().next().getString("name"), is("Aristotle"));
-    session.close();
   }
 
   @Test
@@ -94,7 +92,6 @@ public class TestCassandraProbe {
     }
     ResultSet result = session.execute("select * from test_table WHERE id='key1'");
     assertThat(result.iterator().next().getString("name"), is("Aristotle"));
-    session.close();
   }
 
   @Test
@@ -110,7 +107,6 @@ public class TestCassandraProbe {
     }
     ResultSet result = session.execute("select * from test_table WHERE id='key1'");
     assertThat(result.iterator().next().getString("name"), is("Aristotle"));
-    session.close();
   }
 
   @Test
@@ -126,7 +122,6 @@ public class TestCassandraProbe {
     }
     ResultSet result = session.execute("select * from test_table WHERE id='key1'");
     assertThat(result.iterator().next().getString("name"), is("Aristotle"));
-    session.close();
   }
 
 }
