@@ -30,10 +30,28 @@ public class TestCassandraProbe {
   @Rule public CassandraCQLUnit cassandraCQLUnit = new CassandraCQLUnit(new ClassPathCQLDataSet("test.cql", keyspaceName), "cassandra.yaml", host, port);
 
   @Test
-  public void testUsage() {
+  public void testIncorrectUsage() {
     try {
       probe.usage(CassandraProbe.EXIT_CODE.INCORRECT_USAGE);
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  @Test
+  public void testHostUnavailable() {
+    try {
       probe.usage(CassandraProbe.EXIT_CODE.HOST_UNAVAILABLE);
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  @Test
+  public void testInvalidCredentials() {
+    try {
       probe.usage(CassandraProbe.EXIT_CODE.BAD_AUTH);
     }
     catch(Exception ex) {
@@ -46,8 +64,6 @@ public class TestCassandraProbe {
     ResultSet result = cassandraCQLUnit.session.execute("select * from test_keyspace.test_table WHERE id='key1'");
     assertThat(result.iterator().next().getString("name"), is("Aristotle"));
   }
-
-
 
   @Test
   public void testConnectWithHostOnly() {
