@@ -19,6 +19,13 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <github.global.server>github</github.global.server>
   </properties>
+  <distributionManagement>
+    <repository>
+        <id>internal.repo</id>
+        <name>Temporary Staging Repository</name>
+        <url>file://${project.build.directory}/mvn-repo</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -38,13 +45,6 @@
         </dependency>
   </dependencies>
   <build>
-  <distributionManagement>
-    <repository>
-        <id>internal.repo</id>
-        <name>Temporary Staging Repository</name>
-        <url>file://${project.build.directory}/mvn-repo</url>
-    </repository>
-  </distributionManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
