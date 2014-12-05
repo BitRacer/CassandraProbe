@@ -9,7 +9,10 @@
 	</appender>
 
 	<logger name="org.cassandraunit">
-		<level value="debug" />
+		<level value="error" />
+	</logger>
+	<logger name="com.datastax">
+		<level value="error" />
 	</logger>
 	<logger name="org.apache.cassandra">
 		<level value="error" />
@@ -19,7 +22,7 @@
 	</logger>
 
 	<root>
-		<priority value="debug" />
+		<priority value="error" />
 		<appender-ref ref="outputConsole" />
 	</root>
 
